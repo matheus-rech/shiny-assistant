@@ -10,3 +10,16 @@ google-api-python-client
 markdown
 pandas
 requests
+
+# For meta-analysis in R
+meta
+metafor
+ggplot2
+plotly
+rmarkdown
+naniar
+mice
+dplyr
+knitr
+kableExtra
+robvis

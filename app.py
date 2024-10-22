@@ -52,16 +52,14 @@ app_prompt_language_specific = {
 
 
 greeting = """
-Hello, I'm Shiny Assistant! I'm here to help you with [Shiny](https://shiny.posit.co), a web framework for data driven apps. You can ask me questions about how to use Shiny,
-to explain how certain things work in Shiny, or even ask me to build a Shiny app for
-you.
+Hello, I'm Shiny Assistant! I'm here to help you with meta-analysis in R using the `meta` and `metafor` packages. You can ask me questions about how to use these packages, to explain how certain things work in meta-analysis, or even ask me to perform a meta-analysis for you.
 
 Here are some examples:
 
-- "How do I add a plot to an application?"
-- "Create an app that shows a normal distribution."
-- "Show me how make it so a table will update only after a button is clicked."
-- Ask me, "Open the editor", then copy and paste your existing Shiny code into the editor, and then ask me to make changes to it.
+- "How do I conduct a random-effects meta-analysis?"
+- "Create a forest plot for my meta-analysis results."
+- "Show me how to handle missing values in my dataset."
+- Ask me, "Open the editor", then copy and paste your existing meta-analysis code into the editor, and then ask me to make changes to it.
 
 Let's get started! 🚀
 
@@ -124,6 +122,11 @@ app_ui = ui.page_sidebar(
             ),
         ),
         ui.chat_ui("chat", height="100%"),
+        ui.input_file("data_file", "Upload Data File", multiple=False, accept=[".csv", ".xlsx"]),
+        ui.input_text("effect_sizes", "Effect Sizes (comma-separated)"),
+        ui.input_text("variances", "Variances (comma-separated)"),
+        ui.input_text("study_labels", "Study Labels (comma-separated)"),
+        ui.input_action_button("analyze", "Analyze"),
         open="open",
         width="400px",
         style="height: 100%;",
@@ -140,6 +143,10 @@ app_ui = ui.page_sidebar(
         ),
     ),
     ui.output_ui("shinylive_iframe"),
+    ui.output_plot("forest_plot"),
+    ui.output_plot("funnel_plot"),
+    ui.output_text("summary_statistics"),
+    ui.output_text("report"),
     ui.tags.template(
         ui.modal(
             "Your session has been disconnected due to inactivity or network "
@@ -388,7 +395,7 @@ does not ask you to modify the code, then ignore the code.
             async with reactive.lock():
                 with reactive.isolate():
                     # If we see the <SHINYAPP> tag, make sure the shinylive panel is
-                    # visible.
+                        # visible.
                     if '<SHINYAPP AUTORUN="1">' in content:
                         shinylive_panel_visible.set(True)
 

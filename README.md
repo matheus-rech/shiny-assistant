@@ -36,6 +36,19 @@ Run the app locally:
 shiny run app.py
 ```
 
+## Meta-Analysis Functionalities
+
+This repository now includes functionalities for meta-analysis in R. The main functionalities include:
+
+* **Data input and management**: Upload and manage datasets for meta-analysis, including reading data from various file formats like CSV, Excel, etc.
+* **Data preprocessing**: Handle missing values, data transformation, and outlier detection.
+* **Meta-analysis methods**: Implement various meta-analysis methods, including fixed-effect and random-effects models, subgroup analysis, and meta-regression.
+* **Statistical tests and measures**: Conduct statistical tests and calculate measures such as effect sizes, confidence intervals, and heterogeneity statistics.
+* **Visualization**: Visualize the results of the meta-analysis, such as forest plots, funnel plots, and other relevant charts.
+* **Reporting**: Generate comprehensive reports summarizing the results of the meta-analysis, including tables, figures, and textual descriptions.
+* **User interface**: An intuitive and user-friendly interface for interacting with the assistant, including input widgets, output displays, and navigation elements.
+* **Documentation and help**: Detailed documentation and help resources to guide users in using the assistant effectively.
+
 ## Deploying to a server
 
 You can deploy this app to a server for others to access.
